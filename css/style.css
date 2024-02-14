@@ -43,3 +43,8 @@
     font-size: 30px;
     cursor: pointer;
 }
+
+
+.mySlide:not(.active) {
+    display: none;
+}

@@ -29,8 +29,8 @@ let rowElement = document.querySelector(".my-row");
 
 asideElement.classList.add("col-3", "p-0", "position-relative");
 asideElement.innerHTML = `<div id="arrows">
-<i class="fa-solid fa-circle-chevron-up"></i>
-<i class="fa-solid fa-circle-chevron-down"></i>
+<i class="fa-solid fa-circle-chevron-up arrow-up"></i>
+<i class="fa-solid fa-circle-chevron-down arrow-down"></i>
 </div>`
 
 sliderElement.setAttribute("id", "slider");
@@ -57,6 +57,15 @@ images.forEach((element, index) => {
     imgAsideElement.classList.add("img-fluid", "w-100", "h-100", "object-fit-cover");
     imgAsideElement.src = img;
 
+    // create element blocks for the slider
+    sliderElement.innerHTML += `
+        <div class="mySlide h-100">
+            <img class="img-fluid w-100 h-100 object-fit-cover" src="${img}" />
+            <h2>${title}</h2>
+            <p>${text}</p>
+        </div>`
+
+
     // append every cols to the aside
     asideElement.append(colElement);
 
@@ -64,30 +73,69 @@ images.forEach((element, index) => {
     colElement.append(imgAsideElement)
 });
 
+const slideImgs = document.getElementsByClassName('mySlide');
+console.log(slideImgs);
+
+slideImgs[0].className += " active";
 
 
+let slideNumber = 0;
+
+document.querySelector(".arrow-up").addEventListener("click", function () {
 
 
+    if (slideNumber < slideImgs.length) {
+
+        slideImgs[slideNumber].classList.remove("active");
+
+        slideNumber++;
+
+        slideImgs[slideNumber].classList.add("active");
+
+        console.log(slideNumber);
+
+    } else {
+
+        slideImgs[slideNumber].classList.remove("active");
+
+        slideNumber = 0;
+
+        slideImgs[slideNumber].classList.add("active");
+
+    }
 
 
+});
 
 
+document.querySelector(".arrow-down").addEventListener("click", function () {
 
-// document.querySelector("#up-arrow").addEventListener("click", function () {
-//     if (slideNumber < images.length) {
-//         document.querySelector(`#slider img:nth-of-type(${slideNumber})`).classList.remove("active");
-//         slideNumber++;
-//         document.querySelector(`#slider img:nth-of-type(${slideNumber})`).classList.add("active");
-//         console.log(slideNumber);
-//     } else {
-//         document.querySelector(`#slider img:nth-of-type(${slideNumber})`).classList.remove("active");
-//         slideNumber = 1;
-//         document.querySelector(`#slider img:nth-of-type(${slideNumber})`).classList.add("active");
-//     }
-// });
+    if (slideNumber > 0) {
+        // - prendo l'immagine attuale e le rimuovo la classe "active"  
+        slideImgs[slideNumber].classList.remove("active");
 
+        // - diminuisco il contatore di 1
+        slideNumber--;
 
+        // - prendo l'immagine con il nuovo contatore e le aggiungo la classe "active"
+        slideImgs[slideNumber].classList.add("active");
 
+        console.log(slideNumber);
+
+    } else {
+
+        // - prendo l'immagine attuale e le rimuovo la classe "active"  
+        slideImgs[slideNumber].classList.remove("active");
+
+        // - metto il valore di slideNumebr = alla posizione dell'ultima immagine
+        slideNumber = slideImgs.length;
+
+        // - prendo l'immagine con il nuovo contatore e le aggiungo la classe "active"
+        slideImgs[slideNumber].classList.add("active");
+
+    }
+
+});
 
 
 
