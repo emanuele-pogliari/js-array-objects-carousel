@@ -38,3 +38,7 @@
     height: 100%;
     color: white;
 }
+
+#arrows>* {
+    font-size: 30px;
+}
