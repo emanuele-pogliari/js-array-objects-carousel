@@ -23,7 +23,6 @@ const images = [
 ];
 
 
-
 let sliderElement = document.createElement("div");
 let asideElement = document.createElement("div");
 let rowElement = document.querySelector(".my-row");
@@ -40,6 +39,35 @@ asideElement.setAttribute("id", "aside");
 sliderElement.classList.add("slider", "col-9", "p-0", "overflow-hidden");
 
 rowElement.append(sliderElement, asideElement);
+
+
+images.forEach(element => {
+    const colElement = document.createElement("div");
+    colElement.classList.add("col", "overflow-hidden");
+    const imgAsideElement = document.createElement("img");
+    imgAsideElement.classList.add("img-fluid", "w-100", "h-100", "object-fit-cover");
+    imgAsideElement.src = element['image'];
+    asideElement.append(colElement);
+    colElement.append(imgAsideElement)
+});
+
+
+
+
+
+
+// document.querySelector("#up-arrow").addEventListener("click", function () {
+//     if (slideNumber < images.length) {
+//         document.querySelector(`#slider img:nth-of-type(${slideNumber})`).classList.remove("active");
+//         slideNumber++;
+//         document.querySelector(`#slider img:nth-of-type(${slideNumber})`).classList.add("active");
+//         console.log(slideNumber);
+//     } else {
+//         document.querySelector(`#slider img:nth-of-type(${slideNumber})`).classList.remove("active");
+//         slideNumber = 1;
+//         document.querySelector(`#slider img:nth-of-type(${slideNumber})`).classList.add("active");
+//     }
+// });
 
 
 
