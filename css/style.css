@@ -5,11 +5,12 @@
     border: 1px solid black;
 }
 
-.row {
+.col-9 {
     height: 500px;
 }
 
 .col {
+    height: calc(100% / 5);
     justify-content: center;
 }
 
