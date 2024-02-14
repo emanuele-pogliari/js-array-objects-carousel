@@ -1,0 +1,22 @@
+.row,
+.col-3,
+.col-9,
+.col {
+    border: 1px solid black;
+}
+
+.row {
+    height: 500px;
+}
+
+.col {
+    justify-content: center;
+}
+
+.col-3 {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+/* test */
