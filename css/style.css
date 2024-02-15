@@ -1,17 +1,15 @@
-.row,
-.col-3,
-.col-9,
-.col {
-    border: 1px solid black;
+.row {
+    box-shadow: 2px 2px 3px black;
 }
 
 .col-9 {
     height: 500px;
 }
 
-.col {
-    height: calc(100% / 5);
-    justify-content: center;
+.col:hover {
+    border: 1px solid white;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .col-3 {
@@ -48,7 +46,6 @@
 .mySlide:not(.active) {
     display: none;
 }
-
 
 .my-text-container {
     color: white;

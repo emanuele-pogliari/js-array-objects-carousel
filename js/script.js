@@ -41,7 +41,7 @@ sliderElement.classList.add("slider", "col-9", "p-0", "overflow-hidden");
 rowElement.append(sliderElement, asideElement);
 
 
-images.forEach((element, index) => {
+images.forEach(element => {
 
     // create three elements
     const img = element['image'];
@@ -63,7 +63,7 @@ images.forEach((element, index) => {
             <img class="img-fluid w-100 h-100 object-fit-cover" src="${img}" />
             <div class="text-container col-12 position-absolute my-text-container">
                 <h2>${title}</h2>
-                <p>${text}</p>
+                <p class="small">${text}</p>
             </div>
         </div>`
 
@@ -103,6 +103,7 @@ function showSlide(n) {
         }
     }
     arraySlides[n].classList.add("active");
+
 }
 
 let slideNumber = 0;
@@ -110,10 +111,19 @@ showSlide(slideNumber);
 
 document.querySelector(".arrow-up").addEventListener("click", function () {
     slideNumber++;
-    showSlide(slideNumber)
+    showSlide(slideNumber % images.length)
 });
 
 document.querySelector(".arrow-down").addEventListener("click", function () {
     slideNumber--;
-    showSlide(slideNumber)
+    if (slideNumber < 0) {
+        slideNumber = images.length - 1;
+    }
+    showSlide(slideNumber % images.length)
 });
+
+
+let thumbs = document.querySelectorAll(".slider .mySlide");
+thumbs.forEach((current => {
+    current.add
+}))
