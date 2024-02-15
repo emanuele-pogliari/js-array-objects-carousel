@@ -59,10 +59,12 @@ images.forEach((element, index) => {
 
     // create element blocks for the slider
     sliderElement.innerHTML += `
-        <div class="mySlide h-100">
+        <div class="mySlide h-100 position-relative">
             <img class="img-fluid w-100 h-100 object-fit-cover" src="${img}" />
-            <h2>${title}</h2>
-            <p>${text}</p>
+            <div class="text-container col-12 position-absolute my-text-container">
+                <h2>${title}</h2>
+                <p>${text}</p>
+            </div>
         </div>`
 
 
@@ -74,71 +76,44 @@ images.forEach((element, index) => {
 });
 
 const slideImgs = document.getElementsByClassName('mySlide');
+
 console.log(slideImgs);
 
 slideImgs[0].className += " active";
 
 
+function showSlide(n) {
+
+    const arraySlides = document.getElementsByClassName('mySlide');
+
+    if (n >= images.length) {
+        n = 0;
+    }
+    else if (n < 0) {
+        n = images.length - 1;
+    }
+
+    for (let i = 0; i < arraySlides.length; i++) {
+
+        if (i == n) {
+            arraySlides[i].classList.add("active");
+        }
+        else {
+            arraySlides[i].classList.remove("active");
+        }
+    }
+    arraySlides[n].classList.add("active");
+}
+
 let slideNumber = 0;
+showSlide(slideNumber);
 
 document.querySelector(".arrow-up").addEventListener("click", function () {
-
-
-    if (slideNumber < slideImgs.length) {
-
-        slideImgs[slideNumber].classList.remove("active");
-
-        slideNumber++;
-
-        slideImgs[slideNumber].classList.add("active");
-
-        console.log(slideNumber);
-
-    } else {
-
-        slideImgs[slideNumber].classList.remove("active");
-
-        slideNumber = 0;
-
-        slideImgs[slideNumber].classList.add("active");
-
-    }
-
-
+    slideNumber++;
+    showSlide(slideNumber)
 });
-
 
 document.querySelector(".arrow-down").addEventListener("click", function () {
-
-    if (slideNumber > 0) {
-        // - prendo l'immagine attuale e le rimuovo la classe "active"  
-        slideImgs[slideNumber].classList.remove("active");
-
-        // - diminuisco il contatore di 1
-        slideNumber--;
-
-        // - prendo l'immagine con il nuovo contatore e le aggiungo la classe "active"
-        slideImgs[slideNumber].classList.add("active");
-
-        console.log(slideNumber);
-
-    } else {
-
-        // - prendo l'immagine attuale e le rimuovo la classe "active"  
-        slideImgs[slideNumber].classList.remove("active");
-
-        // - metto il valore di slideNumebr = alla posizione dell'ultima immagine
-        slideNumber = slideImgs.length;
-
-        // - prendo l'immagine con il nuovo contatore e le aggiungo la classe "active"
-        slideImgs[slideNumber].classList.add("active");
-
-    }
-
+    slideNumber--;
+    showSlide(slideNumber)
 });
-
-
-
-/* <div class="col overflow-hidden">
-    <img src="./img/05.webp" class="img-fluid w-100 h-100 object-fit-cover" alt="">
-    </div> */

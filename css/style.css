@@ -48,3 +48,12 @@
 .mySlide:not(.active) {
     display: none;
 }
+
+
+.my-text-container {
+    color: white;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    padding: 15px
+}
