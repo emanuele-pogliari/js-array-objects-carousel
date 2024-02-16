@@ -133,3 +133,19 @@ thumbnailsElements.forEach(((currentThumbnail, index) => {
     })
 }));
 
+
+let timer;
+
+timer = setInterval(function () {
+
+    if (slideNumber > images.length - 1) {
+        slideNumber = 1;
+        showSlide(slideNumber);
+
+    } else {
+        slideNumber++;
+        showSlide(slideNumber);
+    }
+
+}, 3000);
+
