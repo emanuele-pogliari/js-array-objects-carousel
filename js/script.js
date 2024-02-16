@@ -50,7 +50,7 @@ images.forEach(element => {
 
     // create cols for aside
     const colElement = document.createElement("div");
-    colElement.classList.add("col", "overflow-hidden");
+    colElement.classList.add("col", "overflow-hidden", "thumb");
 
     // create img and take object photo value
     const imgAsideElement = document.createElement("img");
@@ -76,8 +76,6 @@ images.forEach(element => {
 });
 
 const slideImgs = document.getElementsByClassName('mySlide');
-
-console.log(slideImgs);
 
 slideImgs[0].className += " active";
 
@@ -110,20 +108,28 @@ let slideNumber = 0;
 showSlide(slideNumber);
 
 document.querySelector(".arrow-up").addEventListener("click", function () {
-    slideNumber++;
-    showSlide(slideNumber % images.length)
-});
-
-document.querySelector(".arrow-down").addEventListener("click", function () {
     slideNumber--;
     if (slideNumber < 0) {
         slideNumber = images.length - 1;
     }
-    showSlide(slideNumber % images.length)
+    showSlide(slideNumber % images.length);
+});
+
+document.querySelector(".arrow-down").addEventListener("click", function () {
+    slideNumber++;
+    showSlide(slideNumber % images.length);
 });
 
 
-let thumbs = document.querySelectorAll(".slider .mySlide");
-thumbs.forEach((current => {
-    current.add
-}))
+
+const thumbnailsElements = document.querySelectorAll("#aside .thumb");
+
+thumbnailsElements.forEach(((currentThumbnail, index) => {
+
+    currentThumbnail.addEventListener("click", () => {
+
+        slideNumber = index;
+        showSlide(slideNumber);
+    })
+}));
+
