@@ -28,10 +28,9 @@ let asideElement = document.createElement("div");
 let rowElement = document.querySelector(".my-row");
 
 asideElement.classList.add("col-3", "p-0", "position-relative");
-asideElement.innerHTML = `<div id="arrows">
+asideElement.innerHTML = `
 <i class="fa-solid fa-circle-chevron-up arrow-up"></i>
-<i class="fa-solid fa-circle-chevron-down arrow-down"></i>
-</div>`
+<i class="fa-solid fa-circle-chevron-down arrow-down"></i>`
 
 sliderElement.setAttribute("id", "slider");
 asideElement.setAttribute("id", "aside");
@@ -133,6 +132,9 @@ thumbnailsElements.forEach(((currentThumbnail, index) => {
     })
 }));
 
+const playButton = document.querySelector("#play-button");
+const pauseButton = document.querySelector("#pause-button");
+const reverseButton = document.querySelector("#reverse-button");
 
 let timer;
 
@@ -149,3 +151,54 @@ timer = setInterval(function () {
 
 }, 3000);
 
+
+
+playButton.addEventListener("click", () => {
+
+    playButton.style.display = "none";
+    pauseButton.style.display = "inline-block";
+    reverseButton.style.display = "none";
+
+    timer = setInterval(function () {
+        if (slideNumber > images.length - 1) {
+            slideNumber = 1;
+            showSlide(slideNumber);
+        } else {
+            slideNumber++;
+            showSlide(slideNumber);
+        }
+    }, 1000);
+});
+
+
+pauseButton.addEventListener("click", () => {
+    playButton.style.display = "inline-block";
+    reverseButton.style.display = "inline-block"
+    pauseButton.style.display = "none";
+
+    clearInterval(timer);
+});
+
+
+reverseButton.addEventListener("click", () => {
+    reverseButton.style.display = "none"
+    playButton.style.display = "none";
+    pauseButton.style.display = "inline-block";
+
+
+
+    timer = setInterval(function () {
+
+        if (slideNumber <= 1) {
+            slideNumber = images.length;
+            showSlide(slideNumber);
+
+        } else {
+
+            slideNumber--;
+            showSlide(slideNumber);
+        }
+
+    }, 1000);
+
+}); 

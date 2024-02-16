@@ -21,24 +21,27 @@
 /* test */
 
 
-#aside #arrows {
+#aside .arrow-down,
+#aside .arrow-up {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
+    left: 50%;
+    transform: translateX(-50%);
     position: absolute;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
     color: white;
+    font-size: 30px;
 }
 
-#arrows>* {
-    font-size: 30px;
+.arrow-down {
+    bottom: 10px;
+}
+
+.arrow-up {
+    top: 10px;
+}
+
+#aside>* {
+
     cursor: pointer;
 }
 
