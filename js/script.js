@@ -22,7 +22,7 @@ const images = [
     }
 ];
 
-
+let buttonsElement = document.createElement("div");
 let sliderElement = document.createElement("div");
 let asideElement = document.createElement("div");
 let rowElement = document.querySelector(".my-row");
@@ -37,8 +37,14 @@ asideElement.setAttribute("id", "aside");
 
 sliderElement.classList.add("slider", "col-9", "p-0", "overflow-hidden");
 
-rowElement.append(sliderElement, asideElement);
+buttonsElement.setAttribute("id", "buttons");
+buttonsElement.classList.add("text-center");
+buttonsElement.innerHTML = `
+<button id="pause-button" class="btn"><i class="fa-solid fa-pause text-white"></i></button>
+<button id="play-button" class="btn"><i class="fa-solid fa-play text-white"></i></button>
+<button id="reverse-button" class="btn"><i class="fa-solid fa-repeat text-white"></i></button>`
 
+rowElement.append(sliderElement, asideElement, buttonsElement);
 
 images.forEach(element => {
 
@@ -82,14 +88,12 @@ slideImgs[0].className += " active";
 function showSlide(n) {
 
     const arraySlides = document.getElementsByClassName('mySlide');
-
     if (n >= images.length) {
         n = 0;
     }
     else if (n < 0) {
         n = images.length - 1;
     }
-
     for (let i = 0; i < arraySlides.length; i++) {
 
         if (i == n) {
@@ -100,7 +104,6 @@ function showSlide(n) {
         }
     }
     arraySlides[n].classList.add("active");
-
 }
 
 let slideNumber = 0;
@@ -122,11 +125,8 @@ document.querySelector(".arrow-down").addEventListener("click", function () {
 
 
 const thumbnailsElements = document.querySelectorAll("#aside .thumb");
-
 thumbnailsElements.forEach(((currentThumbnail, index) => {
-
     currentThumbnail.addEventListener("click", () => {
-
         slideNumber = index;
         showSlide(slideNumber);
     })
@@ -167,7 +167,7 @@ playButton.addEventListener("click", () => {
             slideNumber++;
             showSlide(slideNumber);
         }
-    }, 1000);
+    }, 3000);
 });
 
 
@@ -175,7 +175,6 @@ pauseButton.addEventListener("click", () => {
     playButton.style.display = "inline-block";
     reverseButton.style.display = "inline-block"
     pauseButton.style.display = "none";
-
     clearInterval(timer);
 });
 
@@ -185,20 +184,13 @@ reverseButton.addEventListener("click", () => {
     playButton.style.display = "none";
     pauseButton.style.display = "inline-block";
 
-
-
     timer = setInterval(function () {
-
         if (slideNumber <= 1) {
             slideNumber = images.length;
             showSlide(slideNumber);
-
         } else {
-
             slideNumber--;
             showSlide(slideNumber);
         }
-
-    }, 1000);
-
+    }, 3000);
 }); 
